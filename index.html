@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نظام الاستعلام الذكي للناخبين - الخليل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero card">
+      <div>
+        <p class="eyebrow">مدينة الخليل</p>
+        <p class="sub-eyebrow">انتخابات البلدية 2026</p>
+        <h1>نظام الاستعلام الذكي للناخبين</h1>
+        <p class="hero-text">واجهة ذكية لعرض بيانات الناخبين والبحث فيها بطريقة منظمة واحترافية.</p>
+        <p class="prepared-by">إعداد: أحمد عوني النتشة</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value" id="recordCount">-</span>
+          <span class="stat-label">إجمالي السجلات</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="centerCount">-</span>
+          <span class="stat-label">مراكز الاقتراع</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="search-panel card">
+        <div class="panel-head">
+          <div>
+            <h2>شاشة البحث</h2>
+            <p>استخدم البحث الرئيسي أو الفلاتر التفصيلية، مع إمكانية اختيار جميع المراكز أو مركز واحد أو عدة مراكز.</p>
+          </div>
+        </div>
+
+        <div class="field full-width">
+          <label for="smartSearch">البحث الرئيسي</label>
+          <div class="autocomplete-wrap">
+            <input id="smartSearch" type="text" placeholder="ابدأ بكتابة الاسم أو رقم الناخب..." autocomplete="off" />
+            <div id="autocompleteList" class="autocomplete-list hidden"></div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="firstName">الاسم الأول</label>
+            <input id="firstName" type="text" placeholder="مثال: أحمد" />
+          </div>
+          <div class="field">
+            <label for="fatherName">اسم الأب</label>
+            <input id="fatherName" type="text" placeholder="مثال: محمد" />
+          </div>
+          <div class="field">
+            <label for="grandfatherName">اسم الجد</label>
+            <input id="grandfatherName" type="text" placeholder="مثال: عبد الرحيم" />
+          </div>
+          <div class="field">
+            <label for="familyName">اسم العائلة</label>
+            <input id="familyName" type="text" placeholder="مثال: النتشة" />
+          </div>
+          <div class="field">
+            <label for="voterId">رقم الناخب</label>
+            <input id="voterId" type="text" inputmode="numeric" placeholder="أدخل الرقم بشكل دقيق" />
+          </div>
+          <div class="field">
+            <label for="centerSelectBtn">مركز الاقتراع</label>
+            <div class="multi-select" id="centerMultiSelect">
+              <button type="button" id="centerSelectBtn" class="multi-select-btn" aria-expanded="false">
+                <span id="centerSelectLabel">جميع المراكز</span>
+                <span class="arrow">▾</span>
+              </button>
+              <div id="centerDropdown" class="multi-select-menu hidden">
+                <div id="centerOptions"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="searchBtn" class="btn primary">بحث</button>
+          <button id="resetBtn" class="btn">إعادة ضبط</button>
+          <button id="printBtn" class="btn secondary">طباعة / PDF</button>
+        </div>
+
+        <div class="helper-row">
+          <span class="helper-chip">Autocomplete بعد حرفين</span>
+          <span class="helper-chip">بحث جزئي بالأسماء</span>
+          <span class="helper-chip">مطابقة دقيقة لرقم الناخب</span>
+        </div>
+      </section>
+
+      <section class="results-panel">
+        <div class="results-toolbar card">
+          <div>
+            <h2>النتائج</h2>
+            <p id="statusText">يرجى إدخال بيانات البحث.</p>
+          </div>
+          <div class="results-summary">
+            <span class="summary-pill">عدد النتائج: <strong id="resultCount">0</strong></span>
+            <span class="summary-pill">الحالة: <strong id="resultState">جاهز</strong></span>
+          </div>
+        </div>
+
+        <div id="loadingState" class="state card hidden">
+          <div class="spinner"></div>
+          <p>جاري تنفيذ البحث...</p>
+        </div>
+
+        <div id="messageState" class="state card">
+          <p>يرجى إدخال بيانات البحث.</p>
+        </div>
+
+        <div id="resultsGrid" class="results-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
